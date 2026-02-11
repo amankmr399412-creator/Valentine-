@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS', cursive;
+  overflow:hidden;
+  height:100vh;
+  animation:bgchange 12s infinite alternate;
+}
+
+/* Background color animation */
+@keyframes bgchange{
+  0%{background:#ff758c;}
+  25%{background:#ff7eb3;}
+  50%{background:#ffd1dc;}
+  75%{background:#ff9a9e;}
+  100%{background:#fad0c4;}
+}
+
+/* Center card */
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  position:relative;
+  z-index:2;
+}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  width:330px;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+  animation:pop 1s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(0.5);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+/* Glow text */
+.glow{
+  color:#ff2f92;
+  text-shadow:
+    0 0 5px #ff2f92,
+    0 0 10px #ff2f92,
+    0 0 20px #ff6fb7;
+}
+
+/* Buttons */
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  margin:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+.yes{background:#ff2f92;color:#fff;}
+.no{background:#eee;}
+.hidden{display:none;}
+
+/* Background floating hearts */
+.bg-heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:18px;
+  opacity:0.6;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  10%{opacity:0.6}
+  100%{transform:translateY(-110vh) scale(1.4);opacity:0}
+}
+
+/* Celebration hearts */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* Roses */
+.rose{
+  position:absolute;
+  font-size:24px;
+  animation:fall 7s linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="center">
+  <div class="card" id="q">
+    <h2 class="glow">Sanjana, will you be my Valentine? 💘</h2>
+    <button class="yes" onclick="yes()">Yes</button>
+    <button class="no" onclick="no()">No</button>
+    <p id="msg"></p>
+  </div>
+
+  <div class="card hidden" id="y">
+    <h2 class="glow">HAPPY VALENTINE'S DAY 💖🌹</h2>
+    <p class="glow">Mera pyari Sana bbu Love You!! 🎉💖</h2>
+  <p>You make my days brighter and my heart happier.
+With you, love feels simple, warm, and true.
+I’m grateful for you today and always.✨</p>
+    <img src="https://i.postimg.cc/Gm06k07w/IMG-20260210-212058.jpg" width="200" style="border-radius:15px">
+  </div>
+</div>
+
+<script>
+// Background hearts continuously
+setInterval(()=>{
+  let bh=document.createElement("div");
+  bh.className="bg-heart";
+  bh.innerHTML="💗";
+  bh.style.left=Math.random()*100+"vw";
+  bh.style.animationDuration=(8+Math.random()*6)+"s";
+  document.body.appendChild(bh);
+  setTimeout(()=>bh.remove(),14000);
+},600);
+
+// On YES celebration
+function yes(){
+  document.getElementById("q").classList.add("hidden");
+  document.getElementById("y").classList.remove("hidden");
+
+  for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.bottom="0";
+    h.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+
+  for(let i=0;i<20;i++){
+    let r=document.createElement("div");
+    r.className="rose";
+    r.innerHTML="🌹";
+    r.style.left=Math.random()*100+"vw";
+    r.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(r);
+    setTimeout(()=>r.remove(),8000);
+  }
+}
+
+function no(){
+  document.getElementById("msg").innerText="Soch lo dobara 😄💗";
+}
+</script>
+
+</body>
+</html>
